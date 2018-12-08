@@ -4,3 +4,17 @@
 <h1 align="center">
     Keysafe
 </h1>
+<h2>Description</h2>
+<p>
+Keysafe is a password manager built in C# that is intended to keep passwords secure whilst not requiring an internet connection to make API requests.    
+</p>
+<h3>Benefits</h3>
+<ul>
+<li>Does not require an internet connection.</li>
+<li>Uses AES to encrypt passwords.</li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>Ransomware will destroy all data.</li>
+<li>Data is only stored on one device.</li>
+</ul>
