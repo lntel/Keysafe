@@ -7,12 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Keysafe
 {
     public partial class Form1 : Form
     {
         public Alert alt;
+
+        private string secret;
+
+        private Configuration config;
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +27,7 @@ namespace Keysafe
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Configuration config = new Configuration();
+            config = new Configuration();
 
             this.WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = false;
@@ -35,6 +40,7 @@ namespace Keysafe
 
                 if(create.DialogResult == DialogResult.OK)
                 {
+                    secret = create.secret;
                     this.WindowState = FormWindowState.Normal;
                     this.ShowInTaskbar = true;
                 }
@@ -48,17 +54,80 @@ namespace Keysafe
 
                 if (auth.DialogResult == DialogResult.OK)
                 {
+                    secret = auth.secret;
+
                     alt.Display("Authorised", "You have been successfully authorised.");
                     alt.ShowDialog();
 
                     this.WindowState = FormWindowState.Normal;
                     this.ShowInTaskbar = true;
+
+                    new Thread(() =>
+                    {
+                        ShowSites();
+                    }).Start();
                 }
 
                 alt.Dispose();
 
                 auth.Dispose();
             }
+        }
+
+        private void ShowSites()
+        {
+            config = new Configuration();
+
+            config.RunQuery("select * from accounts");
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                dataGridView1.Rows.Clear();
+            });
+
+                while (config.value.Read())
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    dataGridView1.Rows.Add(config.value["url"], config.value["email"], config.value["hash"]);
+                });
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string value = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+            if(e.ColumnIndex == 2)
+            {
+                value = StringCipher.Decrypt(value, secret);
+
+                bunifuCustomLabel2.Text = "Copied password to clipboard";
+            } else
+            {
+                bunifuCustomLabel2.Text = string.Format("Copied {0} to clipboard!", value);
+            }
+
+            Clipboard.SetText(value);
+        }
+
+        private void bunifuImageButton2_Click(object sender, EventArgs e)
+        {
+            Add add = new Add(secret);
+
+            add.ShowDialog();
+
+            if (add.DialogResult == DialogResult.OK)
+            {
+                ShowSites();
+            }
+
+            add.Dispose();
+        }
+
+        private void bunifuImageButton3_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

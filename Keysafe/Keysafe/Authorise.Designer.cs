@@ -111,7 +111,7 @@
             // 
             this.bunifuDragControl1.Fixed = true;
             this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this;
+            this.bunifuDragControl1.TargetControl = this.pictureBox1;
             this.bunifuDragControl1.Vertical = true;
             // 
             // Authorise
@@ -126,8 +126,10 @@
             this.Controls.Add(this.bunifuCustomLabel1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Authorise";
             this.Text = "Authorise";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Authorise_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

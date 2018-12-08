@@ -13,6 +13,8 @@ namespace Keysafe
     public partial class Authorise : Form
     {
         private string hash;
+
+        public string secret;
         public Authorise()
         {
             InitializeComponent();
@@ -29,6 +31,8 @@ namespace Keysafe
 
             if(StringCipher.Decrypt(hash, password) == password)
             {
+                secret = password;
+
                 bunifuMetroTextbox1.BorderColorIdle = Color.FromArgb(39, 232, 167);
                 bunifuMetroTextbox1.BorderColorFocused = Color.FromArgb(39, 232, 167);
                 bunifuMetroTextbox1.ForeColor = Color.FromArgb(39, 232, 167);

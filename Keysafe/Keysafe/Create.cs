@@ -13,6 +13,8 @@ namespace Keysafe
     public partial class Create : Form
     {
         private Alert alt;
+
+        public string secret;
         public Create()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace Keysafe
             {
                 Configuration config = new Configuration();
 
+                secret = password;
                 password = StringCipher.Encrypt(password, password);
 
                 config.RunQuery(string.Format("insert into settings (master_key) VALUES ('{0}')", password));

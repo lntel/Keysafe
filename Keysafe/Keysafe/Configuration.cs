@@ -37,7 +37,7 @@ namespace Keysafe
 
                 _db.Open();
 
-                string sql = "create table accounts (email varchar(40), username varchar(20), hash varchar (100))";
+                string sql = "create table accounts (url varchar(50), email varchar(40), username varchar(20), hash varchar (100))";
 
                 SQLiteCommand command = new SQLiteCommand(sql, _db);
 
@@ -56,8 +56,6 @@ namespace Keysafe
             _db.Open();
 
             SQLiteCommand command = new SQLiteCommand(query, _db);
-
-            command.ExecuteNonQuery();
 
             value = command.ExecuteReader();
         }

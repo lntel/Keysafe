@@ -22,3 +22,4 @@ C:\Users\jasper\Desktop\Keysafe\Keysafe\bin\Debug\Newtonsoft.Json.xml
 C:\Users\jasper\Desktop\Keysafe\Keysafe\bin\Debug\System.Data.SQLite.xml
 C:\Users\jasper\Desktop\Keysafe\Keysafe\obj\Debug\Keysafe.Create.resources
 C:\Users\jasper\Desktop\Keysafe\Keysafe\obj\Debug\Keysafe.Alert.resources
+C:\Users\jasper\Desktop\Keysafe\Keysafe\obj\Debug\Keysafe.Add.resources
