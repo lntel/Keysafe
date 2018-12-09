@@ -129,5 +129,11 @@ namespace Keysafe
         {
             Environment.Exit(0);
         }
+
+        private void bunifuImageButton1_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
+        }
     }
 }

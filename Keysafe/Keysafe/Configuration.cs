@@ -43,7 +43,13 @@ namespace Keysafe
 
                 command.ExecuteNonQuery();
 
-                sql = "create table settings (master_key)";
+                sql = "create table settings (master_key varchar(50), autoUpdate bit)";
+
+                command = new SQLiteCommand(sql, _db);
+
+                command.ExecuteNonQuery();
+
+                sql = string.Format("insert into settings (autoUpdate) VALUES ('{0}')", true);
 
                 command = new SQLiteCommand(sql, _db);
 
