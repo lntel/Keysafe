@@ -43,13 +43,13 @@ namespace Keysafe
 
                 command.ExecuteNonQuery();
 
-                sql = "create table settings (master_key varchar(50), autoUpdate bit)";
+                sql = "create table settings (master_key varchar(50), autoUpdate bit, autoBackup bit)";
 
                 command = new SQLiteCommand(sql, _db);
 
                 command.ExecuteNonQuery();
 
-                sql = string.Format("insert into settings (autoUpdate) VALUES ('{0}')", true);
+                sql = string.Format("insert into settings (autoUpdate, autoBackup) VALUES ('{0}', '{1}')", true, true);
 
                 command = new SQLiteCommand(sql, _db);
 
@@ -59,7 +59,15 @@ namespace Keysafe
 
         public void RunQuery(string query)
         {
-            _db.Open();
+            switch(_db.State)
+            {
+                case System.Data.ConnectionState.Broken:
+                    _db.Open();
+                    break;
+                case System.Data.ConnectionState.Closed:
+                    _db.Open();
+                    break;
+            }
 
             SQLiteCommand command = new SQLiteCommand(query, _db);
 

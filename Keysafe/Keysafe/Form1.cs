@@ -132,8 +132,23 @@ namespace Keysafe
 
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
-            settings.Show();
+            Settings settings = null;
+
+            if(settings == null)
+            {
+                settings = new Settings();
+                settings.Show();
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

@@ -56,5 +56,10 @@ namespace Keysafe
         {
             bunifuMetroTextbox3.Text = Membership.GeneratePassword(32, 12);
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
