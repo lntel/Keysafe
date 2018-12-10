@@ -19,5 +19,6 @@ Keysafe is a password manager built in C# that is intended to keep passwords sec
 <li>Data is only stored on one device.</li>
 </ul>
 <h2>Examples</h2>
-<h3>Authorisation, this occurs when your master key is defined.</h3>
+<h3>Authorisation</h3>
+<p>Authorisation occurs when your master key is defined.</p>
 <img src="https://i.imgur.com/qHvVCJF.gif">
