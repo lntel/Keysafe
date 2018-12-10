@@ -26,7 +26,7 @@ namespace Keysafe
         {
             string password = bunifuMetroTextbox1.Text;
 
-            if(password != string.Empty)
+            if(password != string.Empty && bunifuCheckbox1.Checked)
             {
                 Configuration config = new Configuration();
 
