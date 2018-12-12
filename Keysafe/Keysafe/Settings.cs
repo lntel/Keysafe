@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Keysafe
 {
@@ -45,6 +46,22 @@ namespace Keysafe
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+    }
+
+    public class Backup
+    {
+        private string dir_path;
+        public Backup()
+        {
+            dir_path = string.Format(@"{0}\Keysafe\", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+        }
+
+        public DateTime BackupDate()
+        {
+            FileInfo fi = new FileInfo(dir_path + "local.sqlite");
+
+            return fi.CreationTime;
         }
     }
 }
