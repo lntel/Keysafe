@@ -15,6 +15,7 @@ namespace Keysafe
     {
         public Alert alt;
 
+        private Thread SettingsEvents;
         private string secret;
 
         private Configuration config;
@@ -66,6 +67,8 @@ namespace Keysafe
                     {
                         ShowSites();
                     }).Start();
+
+                    SettingsEvents = new Thread(LoadSettings);
                 }
 
                 alt.Dispose();
@@ -91,6 +94,32 @@ namespace Keysafe
                 {
                     dataGridView1.Rows.Add(config.value["url"], config.value["email"], config.value["hash"]);
                 });
+            }
+
+            //SettingsEvents.Start();
+        }
+
+        private void LoadSettings()
+        {
+            //int index = 0;
+
+            config = new Configuration();
+
+            while(true)
+            {
+                config.RunQuery("select * from settings");
+
+                while (config.value.Read())
+                {
+                    if(config.value["autoBackup"].ToString() == "True")
+                    {
+                        //Backup backup = new Backup();
+
+                        //MessageBox.Show(backup.BackupDate().ToString());
+                    }
+                }
+
+                Thread.Sleep(2000); // 10 mins
             }
         }
 
