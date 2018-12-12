@@ -35,21 +35,23 @@ namespace Keysafe
 
             if(url != string.Empty && email != string.Empty && password != string.Empty)
             {
-                password = StringCipher.Encrypt(password, phrase);
+                try
+                {
+                    password = StringCipher.Encrypt(password, phrase);
 
-                config.RunQuery(string.Format("insert into accounts (url, email, hash) values ('{0}', '{1}', '{2}')", url, email, password));
+                    config.RunQuery(string.Format("insert into accounts (url, email, hash) values ('{0}', '{1}', '{2}')", url, email, password));
 
-                alt.Display("Account added", "Your new account was successfully added.");
+                    alt.Display("Account added", "Your new account was successfully added.");
 
-                alt.ShowDialog();
+                    alt.ShowDialog();
 
-                this.DialogResult = DialogResult.OK;
+                    this.DialogResult = DialogResult.OK;
+                }
+                catch(Exception ex)
+                {
+                    // handle
+                }
             }
-        }
-
-        private void bunifuFlatButton2_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
         }
 
         private void bunifuFlatButton3_Click(object sender, EventArgs e)
