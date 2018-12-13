@@ -14,7 +14,9 @@ namespace Keysafe
     public partial class Form1 : Form
     {
         public Alert alt;
+        public Settings settings;
 
+        private Add add;
         private Thread SettingsEvents;
         private string secret;
 
@@ -142,16 +144,15 @@ namespace Keysafe
 
         private void bunifuImageButton2_Click(object sender, EventArgs e)
         {
-            Add add = new Add(secret);
-
-            add.ShowDialog();
-
-            if (add.DialogResult == DialogResult.OK)
+            if (add == null)
             {
-                ShowSites();
+                add = new Add(secret);
+                add.ShowDialog();
             }
 
             add.Dispose();
+
+            add = null;
         }
 
         private void bunifuImageButton3_Click(object sender, EventArgs e)
@@ -161,11 +162,9 @@ namespace Keysafe
 
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
-            Settings settings = null;
-
             if(settings == null)
             {
-                settings = new Settings();
+                settings = new Settings(this);
                 settings.Show();
             }
         }
@@ -178,6 +177,11 @@ namespace Keysafe
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
