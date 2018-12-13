@@ -15,9 +15,12 @@ namespace Keysafe
     {
         private Configuration config = new Configuration();
         private Alert alt = new Alert();
-        public Settings()
+        private Form1 frm;
+        public Settings(Form1 form)
         {
             InitializeComponent();
+
+            frm = form;
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -51,6 +54,7 @@ namespace Keysafe
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            frm.settings = null;
             this.Dispose();
         }
 
