@@ -61,5 +61,10 @@ namespace Keysafe
                 hash = config.value["master_key"].ToString();
             }
         }
+
+        private void bunifuCustomLabel3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
