@@ -18,10 +18,14 @@ Keysafe is a password manager built in C# that is intended to keep passwords sec
 <li>Ransomware will destroy all data.</li>
 <li>Data is only stored on one device.</li>
 </ul>
+<p>The passwords stored by Keysafe are only decrypted when the hashes are double clicked and are not stored in memory in their decrypted sensitive state.</p>
 <h2>Examples</h2>
 <h3>Authorisation</h3>
 <p>Authorisation occurs when your master key is defined.</p>
 <img src="https://i.imgur.com/qHvVCJF.gif">
+<h3>Adding an account</h3>
+<p>New accounts can easily be added by using the Add form like so. This form also allows secure passwords to be generated.</p>
+<img src="https://i.imgur.com/wEBW8zt.gif">
 <p style="color:red;">Remember, you can double click details to copy them to clipboard!</p>
 <h2>Releases</h2>
 <ul>
