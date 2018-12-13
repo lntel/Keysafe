@@ -14,6 +14,7 @@ namespace Keysafe
     public partial class Settings : Form
     {
         private Configuration config = new Configuration();
+        private Alert alt = new Alert();
         public Settings()
         {
             InitializeComponent();
@@ -46,6 +47,42 @@ namespace Keysafe
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void bunifuCustomLabel4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuFlatButton1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sv = new SaveFileDialog();
+
+            sv.FileName = Guid.NewGuid().ToString();
+            sv.DefaultExt = "sqlite";
+            sv.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            sv.Title = "Choose a location to export your person data to";
+
+            if(sv.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.Copy(config.full_path, sv.FileName);
+
+                    alt.Display("File Exported", "Successfully exported Sqlite database, these hashes will still be encrypted.");
+                    alt.ShowDialog();
+                    
+                }
+                catch(Exception ex)
+                {
+                    // Handle
+                }
+            }
         }
     }
 
