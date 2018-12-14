@@ -26,6 +26,9 @@ Keysafe is a password manager built in C# that is intended to keep passwords sec
 <h3>Adding an account</h3>
 <p>New accounts can easily be added by using the Add form like so. This form also allows secure passwords to be generated.</p>
 <img src="https://i.imgur.com/wEBW8zt.gif">
+<h3>Importing an pre-exported data file</h3>
+<p>Files already exported by Keysafe can be re-imported at any time, this will restart the application and prompt you for the new password.</p>
+<img src="https://i.imgur.com/UIxilug.gif">
 <p style="color:red;">Remember, you can double click details to copy them to clipboard!</p>
 <h2>Releases</h2>
 <ul>
