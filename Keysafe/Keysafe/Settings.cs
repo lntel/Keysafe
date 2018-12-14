@@ -88,6 +88,32 @@ namespace Keysafe
                 }
             }
         }
+
+        private void bunifuFlatButton2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog sv = new OpenFileDialog();
+
+            sv.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            sv.Title = "Select your Keysafe SQLite file";
+
+            if (sv.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.Copy(sv.FileName, config.full_path, true);
+
+                    alt.Display("File Imported", "Successfully imported Sqlite database.");
+                    alt.ShowDialog();
+
+                    Application.Restart();
+                }
+                catch (Exception ex)
+                {
+                    // Handle
+                    throw ex;
+                }
+            }
+        }
     }
 
     public class Backup
