@@ -37,7 +37,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -90,7 +89,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(12, 205);
+            this.pictureBox2.Location = new System.Drawing.Point(12, 189);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(218, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -101,7 +100,7 @@
             // 
             this.bunifuCustomLabel2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(232)))), ((int)(((byte)(167)))));
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(12, 244);
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(12, 228);
             this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
             this.bunifuCustomLabel2.Size = new System.Drawing.Size(218, 19);
             this.bunifuCustomLabel2.TabIndex = 5;
@@ -115,24 +114,12 @@
             this.bunifuDragControl1.TargetControl = this.pictureBox1;
             this.bunifuDragControl1.Vertical = true;
             // 
-            // bunifuCustomLabel3
-            // 
-            this.bunifuCustomLabel3.AutoSize = true;
-            this.bunifuCustomLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(232)))), ((int)(((byte)(167)))));
-            this.bunifuCustomLabel3.Location = new System.Drawing.Point(12, 188);
-            this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
-            this.bunifuCustomLabel3.Size = new System.Drawing.Size(35, 13);
-            this.bunifuCustomLabel3.TabIndex = 6;
-            this.bunifuCustomLabel3.Text = "Reset";
-            this.bunifuCustomLabel3.Click += new System.EventHandler(this.bunifuCustomLabel3_Click);
-            // 
             // Authorise
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.ClientSize = new System.Drawing.Size(242, 268);
-            this.Controls.Add(this.bunifuCustomLabel3);
+            this.ClientSize = new System.Drawing.Size(242, 255);
             this.Controls.Add(this.bunifuCustomLabel2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.bunifuMetroTextbox1);
@@ -147,7 +134,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -160,6 +146,5 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
     }
 }
