@@ -73,6 +73,11 @@ namespace Keysafe
                     SettingsEvents = new Thread(LoadSettings);
                 }
 
+                if(auth.DialogResult == DialogResult.No)
+                {
+                    Environment.Exit(-1);
+                }
+
                 alt.Dispose();
 
                 auth.Dispose();
