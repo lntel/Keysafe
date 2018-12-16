@@ -130,6 +130,7 @@
             this.Name = "Authorise";
             this.Text = "Authorise";
             this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Authorise_FormClosed);
             this.Load += new System.EventHandler(this.Authorise_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
