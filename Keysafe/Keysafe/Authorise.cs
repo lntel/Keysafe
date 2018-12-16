@@ -66,5 +66,10 @@ namespace Keysafe
         {
 
         }
+
+        private void Authorise_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.No;
+        }
     }
 }
