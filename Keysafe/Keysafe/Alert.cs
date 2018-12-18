@@ -19,20 +19,27 @@ namespace Keysafe
             InitializeComponent();
         }
 
-        public void Display(string title, string message, bool canClose = true)
+        public void Display(string title, string message, bool hasOptions = false)
         {
             bunifuCustomLabel1.Text = title;
             bunifuCustomLabel2.Text = message;
 
-            closable = canClose;
+            if(!hasOptions)
+            {
+                bunifuFlatButton2.Hide();
+
+                bunifuFlatButton1.Size = new Size(304, 48);
+            }
         }
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            if(closable)
-            {
-                DialogResult = DialogResult.OK;
-            }
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void bunifuFlatButton2_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.No;
         }
     }
 }
