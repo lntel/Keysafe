@@ -14,11 +14,14 @@ namespace Keysafe
     public partial class Authorise : Form
     {
         private string hash;
+        private bool authorised;
 
         public string secret;
         public Authorise()
         {
             InitializeComponent();
+
+            authorised = false;
         }
 
         private void bunifuMetroTextbox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -39,6 +42,9 @@ namespace Keysafe
                     bunifuMetroTextbox1.BorderColorIdle = Color.FromArgb(39, 232, 167);
                     bunifuMetroTextbox1.BorderColorFocused = Color.FromArgb(39, 232, 167);
                     bunifuMetroTextbox1.ForeColor = Color.FromArgb(39, 232, 167);
+
+                    authorised = true;
+
                     this.DialogResult = DialogResult.OK;
                 }
                 else
@@ -69,7 +75,10 @@ namespace Keysafe
 
         private void Authorise_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.DialogResult = DialogResult.No;
+            if(!authorised)
+            {
+                this.DialogResult = DialogResult.No;
+            }
         }
     }
 }
