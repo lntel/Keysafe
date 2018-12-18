@@ -73,5 +73,10 @@ namespace Keysafe
 
             value = command.ExecuteReader();
         }
+
+        public void Dispose()
+        {
+            _db.Close();
+        }
     }
 }
