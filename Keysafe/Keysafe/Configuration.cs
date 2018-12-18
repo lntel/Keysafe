@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace Keysafe
 {
@@ -43,17 +44,23 @@ namespace Keysafe
 
                 command.ExecuteNonQuery();
 
+                command.Dispose();
+
                 sql = "create table settings (master_key varchar(50), autoUpdate bit, autoBackup bit)";
 
                 command = new SQLiteCommand(sql, _db);
 
                 command.ExecuteNonQuery();
 
+                command.Dispose();
+
                 sql = string.Format("insert into settings (autoUpdate, autoBackup) VALUES ('{0}', '{1}')", true, true);
 
                 command = new SQLiteCommand(sql, _db);
 
                 command.ExecuteNonQuery();
+
+                command.Dispose();
             }
         }
 
@@ -72,11 +79,17 @@ namespace Keysafe
             SQLiteCommand command = new SQLiteCommand(query, _db);
 
             value = command.ExecuteReader();
+
+            command.Dispose();
         }
 
-        public void Dispose()
+        public void Erase()
         {
+            value.Close();
+
             _db.Close();
+
+            File.Delete(full_path);
         }
     }
 }
