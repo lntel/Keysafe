@@ -131,37 +131,12 @@ namespace Keysafe
             switch(alt.DialogResult)
             {
                 case DialogResult.OK:
-                    Application.Exit();
 
-                    try
-                    {
-                        new Thread(() =>
-                        {
-                            string dirpth = config.dir_path;
-                            string fullpth = config.full_path;
+                    string dirpth = config.dir_path;
+                    string fullpth = config.full_path;
 
-                            config.Dispose();
+                    config.Dispose();
 
-                            while(Directory.Exists(dirpth))
-                            {
-                                try
-                                {
-                                    File.Delete(fullpth);
-                                    Directory.Delete(dirpth);
-                                }
-                                catch(Exception ex)
-                                {
-
-                                }
-
-                                Thread.Sleep(1000);
-                            }
-                        }).Start();
-                    }
-                    catch(Exception ex)
-                    {
-
-                    }
                     break;
 
                 case DialogResult.No:

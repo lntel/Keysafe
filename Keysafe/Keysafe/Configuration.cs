@@ -77,6 +77,10 @@ namespace Keysafe
         public void Dispose()
         {
             _db.Close();
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            File.Delete(full_path);
         }
     }
 }

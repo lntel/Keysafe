@@ -37,12 +37,3 @@ C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\obj\Debug\Keysafe.cs
 C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\obj\Debug\Keysafe.csproj.CopyComplete
 C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\obj\Debug\Keysafe.exe
 C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\obj\Debug\Keysafe.pdb
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\Costura.dll
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\EntityFramework.dll
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\System.Data.SQLite.dll
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\System.Data.SQLite.EF6.dll
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\System.Data.SQLite.Linq.dll
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\Costura.xml
-C:\Users\Anonymous\Documents\GitHub\Keysafe\Keysafe\Keysafe\bin\Debug\Newtonsoft.Json.pdb
