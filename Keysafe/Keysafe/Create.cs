@@ -33,7 +33,7 @@ namespace Keysafe
                 secret = password;
                 password = StringCipher.Encrypt(password, password);
 
-                config.RunQuery(string.Format("insert into settings (master_key) VALUES ('{0}')", password));
+                SqliteExtensions.ExecuteCommand(config._db, string.Format("insert into settings (master_key) VALUES ('{0}')", password));
 
                 alt.Display("Password set", "Congratulations, your password is now set and Keysafe is ready to use.");
                 alt.ShowDialog();

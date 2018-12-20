@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Data.SQLite;
 
 namespace Keysafe
 {
@@ -60,11 +61,12 @@ namespace Keysafe
         {
             Configuration config = new Configuration();
 
-            config.RunQuery("select master_key from settings");
-
-            while(config.value.Read())
+            using (SQLiteDataReader reader = SqliteExtensions.ExecuteReader(config._db, "select master_key from settings"))
             {
-                hash = config.value["master_key"].ToString();
+                while(reader.Read())
+                {
+                    hash = reader["master_key"].ToString();
+                }
             }
         }
 

@@ -39,7 +39,7 @@ namespace Keysafe
                 {
                     password = StringCipher.Encrypt(password, phrase);
 
-                    config.RunQuery(string.Format("insert into accounts (url, email, hash) values ('{0}', '{1}', '{2}')", url, email, password));
+                    SqliteExtensions.ExecuteCommand(config._db, string.Format("insert into accounts (url, email, hash) values ('{0}', '{1}', '{2}')", url, email, password));
 
                     alt.Display("Account added", "Your new account was successfully added.");
 

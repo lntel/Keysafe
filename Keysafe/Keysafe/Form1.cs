@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Data.SQLite;
 
 namespace Keysafe
 {
@@ -88,19 +89,20 @@ namespace Keysafe
         {
             config = new Configuration();
 
-            config.RunQuery("select * from accounts");
-
-            this.Invoke((MethodInvoker)delegate
-            {
-                dataGridView1.Rows.Clear();
-            });
-
-                while (config.value.Read())
+            using (SQLiteDataReader reader = SqliteExtensions.ExecuteReader(config._db, "select * from accounts"))
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    dataGridView1.Rows.Add(config.value["url"], config.value["email"], config.value["hash"]);
+                    dataGridView1.Rows.Clear();
                 });
+
+                while (reader.Read())
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        dataGridView1.Rows.Add(reader["url"], reader["email"], reader["hash"]);
+                    });
+                }
             }
 
             //SettingsEvents.Start();
@@ -114,15 +116,16 @@ namespace Keysafe
 
             while(true)
             {
-                config.RunQuery("select * from settings");
-
-                while (config.value.Read())
+                using (SQLiteDataReader reader = SqliteExtensions.ExecuteReader(config._db, "selec * from settings"))
                 {
-                    if(config.value["autoBackup"].ToString() == "True")
+                    while (reader.Read())
                     {
-                        //Backup backup = new Backup();
+                        if (reader["autoBackup"].ToString() == "True")
+                        {
+                            //Backup backup = new Backup();
 
-                        //MessageBox.Show(backup.BackupDate().ToString());
+                            //MessageBox.Show(backup.BackupDate().ToString());
+                        }
                     }
                 }
 
@@ -153,6 +156,11 @@ namespace Keysafe
             {
                 add = new Add(secret);
                 add.ShowDialog();
+
+                if(add.DialogResult == DialogResult.OK)
+                {
+                    ShowSites();
+                }
             }
 
             add.Dispose();

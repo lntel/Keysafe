@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Data.SQLite;
 
 namespace Keysafe
 {
@@ -26,33 +27,34 @@ namespace Keysafe
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            config.RunQuery("select * from settings");
-
-            while(config.value.Read())
+            using (SQLiteDataReader reader = SqliteExtensions.ExecuteReader(config._db, "select * from settings"))
             {
-                try
+                while (reader.Read())
                 {
-                    string autoupdate = config.value["autoUpdate"].ToString();
-                    string autobackup = config.value["autoBackup"].ToString();
+                    try
+                    {
+                        string autoupdate = reader["autoUpdate"].ToString();
+                        string autobackup = reader["autoBackup"].ToString();
 
-                    bunifuSwitch1.Value = Convert.ToBoolean(autoupdate);
-                    bunifuSwitch2.Value = Convert.ToBoolean(autobackup);
-                }
-                catch(Exception ex)
-                {
-                    // TODO: Handle
+                        bunifuSwitch1.Value = Convert.ToBoolean(autoupdate);
+                        bunifuSwitch2.Value = Convert.ToBoolean(autobackup);
+                    }
+                    catch (Exception ex)
+                    {
+                        // TODO: Handle
+                    }
                 }
             }
         }
 
         private void bunifuSwitch1_Click(object sender, EventArgs e)
         {
-            config.RunQuery(string.Format("update settings set autoUpdate = {0}", bunifuSwitch1.Value));
+            SqliteExtensions.ExecuteCommand(config._db, string.Format("update settings set autoUpdate = {0}", bunifuSwitch1.Value));
         }
 
         private void bunifuSwitch2_Click(object sender, EventArgs e)
         {
-            config.RunQuery(string.Format("update settings set autoBackup = {0}", bunifuSwitch2.Value));
+            SqliteExtensions.ExecuteCommand(config._db, string.Format("update settings set autoBackup = {0}", bunifuSwitch2.Value));
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
