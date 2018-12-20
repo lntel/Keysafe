@@ -30,6 +30,8 @@ Keysafe is a password manager built in C# that is intended to keep passwords sec
 <p>Files already exported by Keysafe can be re-imported at any time, this will restart the application and prompt you for the new password.</p>
 <img src="https://i.imgur.com/UIxilug.gif">
 <p style="color:red;">Remember, you can double click details to copy them to clipboard!</p>
+<h2>Proclaimer</h2>
+<p>Keysafe does not and will not ever connect to a server or API. All of the data entered into Keysafe will always be privately stored on your own device.</p>
 <h2>Releases</h2>
 <ul>
     <li><a href="https://github.com/lntel/Keysafe/releases/tag/v1.0.0">v1.0.0</a></li>
