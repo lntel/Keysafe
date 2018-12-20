@@ -15,9 +15,8 @@ namespace Keysafe
         public string full_path;
         public bool first_time = false;
 
-        public SQLiteDataReader value;
+        public SQLiteConnection _db;
 
-        private SQLiteConnection _db;
         public Configuration()
         {
             dir_path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Keysafe";
@@ -39,48 +38,61 @@ namespace Keysafe
 
                 string sql = "create table accounts (url varchar(50), email varchar(40), username varchar(20), hash varchar (100))";
 
-                SQLiteCommand command = new SQLiteCommand(sql, _db);
-
-                command.ExecuteNonQuery();
+                SqliteExtensions.ExecuteCommand(_db, sql);
 
                 sql = "create table settings (master_key varchar(50), autoUpdate bit, autoBackup bit)";
 
-                command = new SQLiteCommand(sql, _db);
-
-                command.ExecuteNonQuery();
+                SqliteExtensions.ExecuteCommand(_db, sql);
 
                 sql = string.Format("insert into settings (autoUpdate, autoBackup) VALUES ('{0}', '{1}')", true, true);
 
-                command = new SQLiteCommand(sql, _db);
-
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void RunQuery(string query)
-        {
-            switch(_db.State)
+                SqliteExtensions.ExecuteCommand(_db, sql);
+            } else
             {
-                case System.Data.ConnectionState.Broken:
-                    _db.Open();
-                    break;
-                case System.Data.ConnectionState.Closed:
-                    _db.Open();
-                    break;
+                switch (_db.State)
+                {
+                    case System.Data.ConnectionState.Broken:
+                        _db.Open();
+                        break;
+                    case System.Data.ConnectionState.Closed:
+                        _db.Open();
+                        break;
+                }
             }
-
-            SQLiteCommand command = new SQLiteCommand(query, _db);
-
-            value = command.ExecuteReader();
         }
 
         public void Dispose()
         {
+
             _db.Close();
+
+            SQLiteConnection.ClearAllPools();
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
+
             File.Delete(full_path);
+        }
+    }
+
+    static class SqliteExtensions
+    {
+        public static SQLiteDataReader ExecuteReader(SQLiteConnection connection, string query)
+        {
+            using (SQLiteCommand command = connection.CreateCommand())
+            {
+                command.CommandText = query;
+                return command.ExecuteReader();
+            }
+        }
+
+        public static void ExecuteCommand(SQLiteConnection _db, string query)
+        {
+            using (SQLiteCommand command = _db.CreateCommand())
+            {
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
