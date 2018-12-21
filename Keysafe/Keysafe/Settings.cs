@@ -137,7 +137,12 @@ namespace Keysafe
                     string dirpth = config.dir_path;
                     string fullpth = config.full_path;
 
-                    config.Dispose();
+                    config._db.Close();
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
+                    File.Delete(config.full_path);
 
                     break;
 
