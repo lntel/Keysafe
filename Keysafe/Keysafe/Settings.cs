@@ -65,6 +65,9 @@ namespace Keysafe
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             frm.settings = null;
+
+            GC.Collect();
+
             this.Dispose();
         }
 

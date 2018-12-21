@@ -46,6 +46,8 @@ namespace Keysafe
 
                     authorised = true;
 
+                    GC.Collect();
+
                     this.DialogResult = DialogResult.OK;
                 }
                 else
