@@ -40,18 +40,17 @@ namespace Keysafe
 
             if (config.first_time)
             {
-                Create create = new Create();
-
-                create.ShowDialog();
-
-                if(create.DialogResult == DialogResult.OK)
+                using (Create create = new Create())
                 {
-                    secret = create.secret;
-                    this.WindowState = FormWindowState.Normal;
-                    this.ShowInTaskbar = true;
-                }
+                    create.ShowDialog();
 
-                create.Dispose();
+                    if (create.DialogResult == DialogResult.OK)
+                    {
+                        secret = create.secret;
+                        this.WindowState = FormWindowState.Normal;
+                        this.ShowInTaskbar = true;
+                    }
+                }
             } else
             {
                 Authorise auth = new Authorise();
@@ -228,6 +227,8 @@ namespace Keysafe
             dataGridView1.Rows.RemoveAt(rowIndex);
 
             rowIndex = 0;
+
+            GC.Collect();
         }
     }
 }
