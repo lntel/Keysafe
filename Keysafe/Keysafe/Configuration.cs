@@ -52,7 +52,7 @@ namespace Keysafe
                 switch (_db.State)
                 {
                     case System.Data.ConnectionState.Broken:
-                        _db.Open();
+                        //_db.Open();
                         break;
                     case System.Data.ConnectionState.Closed:
                         _db.Open();
@@ -63,10 +63,7 @@ namespace Keysafe
 
         public void Dispose()
         {
-
             _db.Close();
-
-            SQLiteConnection.ClearAllPools();
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
