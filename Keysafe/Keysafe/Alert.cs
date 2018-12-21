@@ -13,7 +13,6 @@ namespace Keysafe
 {
     public partial class Alert : Form
     {
-        private bool closable;
         public Alert()
         {
             InitializeComponent();
@@ -28,7 +27,7 @@ namespace Keysafe
             {
                 bunifuFlatButton2.Hide();
 
-                bunifuFlatButton1.Size = new Size(304, 48);
+                bunifuFlatButton1.Size = new Size(237, 48);
             }
         }
 
