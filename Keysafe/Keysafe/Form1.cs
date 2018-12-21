@@ -21,6 +21,8 @@ namespace Keysafe
         private Thread SettingsEvents;
         private string secret;
 
+        private int rowIndex;
+
         private Configuration config;
         public Form1()
         {
@@ -71,7 +73,7 @@ namespace Keysafe
                         ShowSites();
                     }).Start();
 
-                    SettingsEvents = new Thread(LoadSettings);
+                    //SettingsEvents = new Thread(LoadSettings);
                 }
 
                 if(auth.DialogResult == DialogResult.No)
@@ -195,6 +197,37 @@ namespace Keysafe
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            /*
+            if(bunifuFlatButton1.Visible)
+            {
+                bunifuFlatButton1.Visible = false;
+            } else
+            {
+                bunifuFlatButton1.Visible = true;
+            }
+            */
+        }
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!bunifuImageButton3.Visible) bunifuImageButton3.Visible = true;
+
+            rowIndex = e.RowIndex;
+        }
+
+        private void bunifuImageButton3_Click_1(object sender, EventArgs e)
+        {
+            SqliteExtensions.ExecuteCommand(config._db, string.Format("delete from accounts where url = '{0}'", dataGridView1.Rows[rowIndex].Cells[0].Value.ToString()));
+
+            bunifuCustomLabel2.Text = "Record for " + dataGridView1.Rows[rowIndex].Cells[0].Value.ToString() + " has been deleted";
+
+            dataGridView1.Rows.RemoveAt(rowIndex);
+
+            rowIndex = 0;
         }
     }
 }
