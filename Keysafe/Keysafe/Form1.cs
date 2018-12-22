@@ -18,7 +18,7 @@ namespace Keysafe
         public Settings settings;
 
         private Add add;
-        private Thread SettingsEvents;
+        private Utilities _utils;
         private string secret;
 
         private int rowIndex;
@@ -106,31 +106,27 @@ namespace Keysafe
                 }
             }
 
-            //SettingsEvents.Start();
+            applySettings();
         }
 
-        private void LoadSettings()
+        private void applySettings()
         {
-            //int index = 0;
+            _utils = new Utilities();
 
-            config = new Configuration();
+            Dictionary<string, bool> settings = new Dictionary<string, bool>();
 
-            while(true)
+            using (SQLiteDataReader reader = SqliteExtensions.ExecuteReader(config._db, "select * from settings"))
             {
-                using (SQLiteDataReader reader = SqliteExtensions.ExecuteReader(config._db, "selec * from settings"))
+                while(reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        if (reader["autoBackup"].ToString() == "True")
-                        {
-                            //Backup backup = new Backup();
-
-                            //MessageBox.Show(backup.BackupDate().ToString());
-                        }
-                    }
+                    settings["autoBackup"] = Convert.ToBoolean(reader["autoBackup"]);
+                    settings["autoUpdate"] = Convert.ToBoolean(reader["autoUpdate"]);
                 }
+            }
 
-                Thread.Sleep(2000); // 10 mins
+            if(settings["autoBackup"])
+            {
+                _utils.backupThread.Start();
             }
         }
 
@@ -178,7 +174,7 @@ namespace Keysafe
         {
             if(settings == null)
             {
-                settings = new Settings(this);
+                settings = new Settings(this, _utils.backupThread);
                 settings.Show();
             }
         }
