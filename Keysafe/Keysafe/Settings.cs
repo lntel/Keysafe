@@ -18,11 +18,18 @@ namespace Keysafe
         private Configuration config = new Configuration();
         private Alert alt = new Alert();
         private Form1 frm;
-        public Settings(Form1 form)
+
+        private Thread backupThread;
+        private ManualResetEvent backupEvent;
+
+        public Settings(Form1 form, Thread backupThread)
         {
             InitializeComponent();
 
             frm = form;
+            this.backupThread = backupThread;
+
+            backupEvent = new ManualResetEvent(true);
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -54,6 +61,19 @@ namespace Keysafe
 
         private void bunifuSwitch2_Click(object sender, EventArgs e)
         {
+            if(!bunifuSwitch2.Value)
+            {
+                if (backupThread.ThreadState == ThreadState.WaitSleepJoin)
+                {
+                    //backupThread.rese();
+
+                    GC.Collect();
+                }
+            } else
+            {
+                if (backupThread.ThreadState == ThreadState.Aborted) backupThread.Start();
+            }
+
             SqliteExtensions.ExecuteCommand(config._db, string.Format("update settings set autoBackup = {0}", bunifuSwitch2.Value));
         }
 
@@ -156,11 +176,21 @@ namespace Keysafe
         }
     }
 
+    public struct BackupData
+    {
+        public string name;
+        public int timestamp;
+    }
+
     public class Backup
     {
+        private List<BackupData> _bData;
         private string dir_path;
+            
         public Backup()
         {
+            _bData = new List<BackupData>();
+
             dir_path = string.Format(@"{0}\Keysafe\", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
         }
 
