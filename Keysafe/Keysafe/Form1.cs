@@ -84,6 +84,8 @@ namespace Keysafe
 
                 auth.Dispose();
             }
+
+            GC.Collect();
         }
 
         private void ShowSites()
