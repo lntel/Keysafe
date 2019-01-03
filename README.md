@@ -34,6 +34,6 @@ Keysafe is a password manager built in C# that is intended to keep passwords sec
 <p>Keysafe does not and will not ever connect to a server or API. All of the data entered into Keysafe will always be privately stored on your own device.</p>
 <h2>Releases</h2>
 <ul>
-    <li><a href="https://github.com/lntel/Keysafe/releases/tag/v1.0.0">v1.0.0</a></li>
-    <li><a href="https://github.com/lntel/Keysafe/releases/download/v1.0.1/Keysafe.exe">v1.0.1</a></li>
+    <li><a href="https://github.com/lntel/Keysafe/releases/tag/v1.0.0-alpha.1">v1.0.0-alpha.1</a></li>
+    <li><a href="https://github.com/lntel/Keysafe/releases/tag/v1.0.0-alpha.2">v1.0.0-alpha.2</a></li>
 </ul>
