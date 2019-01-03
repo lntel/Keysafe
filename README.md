@@ -35,5 +35,5 @@ Keysafe is a password manager built in C# that is intended to keep passwords sec
 <h2>Releases</h2>
 <ul>
     <li><a href="https://github.com/lntel/Keysafe/releases/tag/v1.0.0">v1.0.0</a></li>
-    <li><a href="https://github.com/lntel/Keysafe/releases/download/v1.0.2/Keysafe.exe">v1.0.1</a></li>
+    <li><a href="https://github.com/lntel/Keysafe/releases/download/v1.0.1/Keysafe.exe">v1.0.1</a></li>
 </ul>
